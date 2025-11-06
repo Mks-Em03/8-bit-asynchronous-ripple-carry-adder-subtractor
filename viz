@@ -1,1 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>CLA vs RCA — Visual Delay</title>
+<style>
+  body{font-family:Inter,system-ui,sans-serif;margin:24px}
+  h1{font-size:20px;margin:0 0 8px}
+  .wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .panel{padding:14px;border:1px solid #eee;border-radius:12px}
+  .fa{height:22px;width:80px;background:#eef;border-radius:8px;margin:6px 0;position:relative}
+  .fa::after{content:"FA";position:absolute;left:6px;top:2px;font:12px/1 ui-monospace;color:#345}
+  .bar{height:8px;background:#222;border-radius:6px;width:0}
+  .lab{font:12px monospace;color:#444;margin:6px 0}
+  button{padding:8px 12px;border:1px solid #ddd;border-radius:10px;background:#fff;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>CLA vs RCA — Visualizing Effective Delay</h1>
+<p>Click "Start" to simulate worst-case carry. RCA grows linearly with bit count; CLA short-cuts using generate/propagate.</p>
+<div class="wrap">
+  <div class="panel">
+    <h3>RCA</h3>
+    <div id="rca">
+      <div class="fa"></div><div class="fa"></div><div class="fa"></div><div class="fa"></div>
+      <div class="fa"></div><div class="fa"></div><div class="fa"></div><div class="fa"></div>
+    </div>
+    <div class="lab">Delay:</div><div class="bar" id="rcabar"></div>
+  </div>
+  <div class="panel">
+    <h3>CLA (4+4)</h3>
+    <div id="cla">
+      <div class="fa"></div><div class="fa"></div><div class="fa"></div><div class="fa"></div>
+      <div class="fa"></div><div class="fa"></div><div class="fa"></div><div class="fa"></div>
+    </div>
+    <div class="lab">Delay (grouped):</div><div class="bar" id="clabar"></div>
+  </div>
+</div>
+<p><button id="go">Start</button></p>
+
+<script>
+const rcaBar = document.getElementById('rcabar');
+const claBar = document.getElementById('clabar');
+const go = document.getElementById('go');
+
+function animateBar(el, ms){
+  el.style.transition = 'none'; el.style.width = '0';
+  requestAnimationFrame(()=>{
+    el.style.transition = `width ${ms}ms linear`;
+    el.style.width = '100%';
+  });
+}
+
+go.onclick = ()=>{
+  // naive visualization: RCA ~ 8T; CLA ~ 4T + small group carry
+  animateBar(rcaBar, 1600); // longer
+  animateBar(claBar, 700);  // shorter
+};
+</script>
+</body>
+</html>
 
