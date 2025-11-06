@@ -3,10 +3,7 @@
 **ECE571 — VLSI System Design (Spring 2024)**  
 This repo contains RTL/schematics notes, waveforms, and **interactive visualizations** for an 8-bit ripple-carry adder/subtractor (plus D-FF, XOR for subtract, and a simple CLA reference). Includes timing/overflow views and a 16-bit cascade demo.
 
-> Explore the animations:  
-> - 🔗 [`viz/ripple-carry.html`](./viz/ripple-carry.html) – carry ripple animation (add/sub)  
-> - 🔗 [`viz/timing-diagram.html`](./viz/timing-diagram.html) – animated timing & overflow  
-> - 🔗 [`viz/cla-vs-rca.html`](./viz/cla-vs-rca.html) – CLA vs RCA visual delay comparison
+
 
 ---
 
